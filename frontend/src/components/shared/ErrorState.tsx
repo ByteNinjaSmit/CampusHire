@@ -7,15 +7,18 @@ import { cn } from "@/lib/utils";
 
 export function ErrorState({
   error,
+  description,
   title = "Something went wrong",
   onRetry,
   className,
 }: {
   error?: unknown;
+  description?: string;
   title?: string;
   onRetry?: () => void;
   className?: string;
 }) {
+  const message = description || (error ? errorMessage(error) : null);
   return (
     <div
       className={cn(
@@ -28,7 +31,7 @@ export function ErrorState({
         <AlertTriangle className="size-5" />
       </div>
       <h3 className="font-semibold">{title}</h3>
-      {error ? <p className="mt-1 max-w-md text-sm text-muted-foreground">{errorMessage(error)}</p> : null}
+      {message ? <p className="mt-1 max-w-md text-sm text-muted-foreground">{message}</p> : null}
       {onRetry && (
         <Button variant="outline" size="sm" className="mt-4 rounded-xl" onClick={onRetry}>
           <RotateCw /> Try again

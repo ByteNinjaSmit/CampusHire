@@ -26,6 +26,7 @@ export function formatRelative(v: string | Date | null | undefined): string {
   const d = toDate(v);
   return d ? `${formatDistanceToNowStrict(d)} ${d.getTime() > Date.now() ? "from now" : "ago"}` : "-";
 }
+export const formatRelativeDate = formatRelative;
 
 /** "3 days left" / "closed" style countdown for deadlines. */
 export function formatCountdown(v: string | Date | null | undefined): string {

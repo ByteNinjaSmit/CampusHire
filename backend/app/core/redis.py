@@ -1,5 +1,6 @@
 """Shared async Redis client, JSON cache helpers, fixed-window rate limiter and pub/sub publish."""
 
+import asyncio
 import json
 from typing import Any
 
@@ -7,21 +8,29 @@ from redis.asyncio import Redis
 
 from app.core.config import settings
 
-_client: Redis | None = None
+_clients: dict[asyncio.AbstractEventLoop, Redis] = {}
 
 
 def get_redis() -> Redis:
-    global _client
-    if _client is None:
-        _client = Redis.from_url(settings.REDIS_URL, decode_responses=True)
-    return _client
+    loop = asyncio.get_running_loop()
+    client = _clients.get(loop)
+    if client is None:
+        client = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+        _clients[loop] = client
+    return client
 
 
 async def close_redis() -> None:
-    global _client
-    if _client is not None:
-        await _client.aclose()
-        _client = None
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        return
+    client = _clients.pop(loop, None)
+    if client is not None:
+        try:
+            await client.aclose()
+        except Exception:
+            pass
 
 
 async def cache_get(key: str) -> Any | None:

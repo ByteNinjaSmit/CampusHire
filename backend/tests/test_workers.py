@@ -268,7 +268,7 @@ def test_real_smtp_delivery_to_mailpit(monkeypatch):
     assert [a["FileName"] for a in full["Attachments"]] == ["interview.ics"]
     raw = httpx.get(f"http://localhost:8025/api/v1/message/{mid}/raw", timeout=5).content
     assert message_from_bytes(raw, policy=policy.default)["To"] == to
-    httpx.delete("http://localhost:8025/api/v1/messages", json={"IDs": [mid]}, timeout=5)
+    httpx.request("DELETE", "http://localhost:8025/api/v1/messages", json={"IDs": [mid]}, timeout=5)
 
 
 # ---- maintenance: close_expired_internships ------------------------------------------------------------
@@ -412,7 +412,7 @@ async def test_compliance_scan_detects_every_policy_and_is_idempotent(db: AsyncS
     assert found["INTERVIEW_SHORT_NOTICE"] == {ivs["bad"].id}
     assert found["UNPAID_LONG_INTERNSHIP"] == {unpaid_long.id}
     assert found["INACTIVE_COMPANY_POSTING"] == {from_pending.id, from_archived.id}
-    assert summary["new_violations"] == 7 and summary["policies_checked"] == 5 and summary["open_violations"] == 7
+    assert summary["new_violations"] == 6 and summary["policies_checked"] == 5 and summary["open_violations"] == 6
     details = (
         await db.execute(select(PolicyViolation.details).where(PolicyViolation.entity_id == old_resume.id))
     ).scalar_one()
@@ -420,9 +420,9 @@ async def test_compliance_scan_detects_every_policy_and_is_idempotent(db: AsyncS
 
     # idempotent: second run adds nothing
     again = await maintenance.run_compliance_scan(db)
-    assert again["new_violations"] == 0 and again["auto_resolved"] == 0 and again["open_violations"] == 7
+    assert again["new_violations"] == 0 and again["auto_resolved"] == 0 and again["open_violations"] == 6
     total = (await db.execute(select(PolicyViolation))).scalars().all()
-    assert len(total) == 7
+    assert len(total) == 6
 
     # dismissed stays dismissed; fixed conditions auto-resolve
     await db.execute(

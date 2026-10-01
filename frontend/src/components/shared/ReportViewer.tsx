@@ -27,13 +27,18 @@ export function KpiRow({ kpis, className }: { kpis: Kpi[]; className?: string })
   );
 }
 
+function isChartEmpty(chart: ReportChart): boolean {
+  if ("data" in chart) {
+    return chart.data.length === 0 || chart.data.every((d) => d.value === 0);
+  }
+  if (chart.type === "radar") {
+    return chart.series.length === 0;
+  }
+  return chart.series.length === 0 || chart.series.every((s: { data: number[] }) => s.data.every((v: number) => !v));
+}
+
 export function ReportChartCard({ chart, height = 300, className }: { chart: ReportChart; height?: number; className?: string }) {
-  const empty =
-    chart.type === "pie" || chart.type === "donut"
-      ? chart.data.length === 0 || chart.data.every((d) => d.value === 0)
-      : chart.type === "radar"
-        ? chart.series.length === 0
-        : chart.series.length === 0 || chart.series.every((s) => s.data.every((v) => !v));
+  const empty = isChartEmpty(chart);
   return (
     <section className={cn("card-surface p-5", className)} data-chart-id={chart.id}>
       <h3 className="mb-3 text-sm font-semibold">{chart.title}</h3>

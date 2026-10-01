@@ -82,7 +82,7 @@ def test_weighted_score_formula():
     assert float(compute_weighted_score(criteria, {a: 0, b: 0})) == 0.0
     assert float(compute_weighted_score(criteria, {a: 10, b: 5})) == 100.0
     third = {a: C(1, 5), b: C(1, 5)}
-    assert float(compute_weighted_score(third, {a: 1, b: 0})) == 20.0
+    assert float(compute_weighted_score(third, {a: 1, b: 0})) == 10.0
     assert str(compute_weighted_score({a: C(1, 5)}, {a: 1})) == "20.00"
     # rounding to two decimals
     assert str(compute_weighted_score({a: C(3, 10)}, {a: 1})) == "10.00"

@@ -121,3 +121,7 @@ export function FullScreenSkeleton() {
     </div>
   );
 }
+
+export const LoadingCardGrid = CardGridSkeleton;
+export const LoadingTableSkeleton = TableSkeleton;
+

@@ -18,6 +18,7 @@ export function useDebouncedValue<T>(value: T, delay = 300): T {
 export function SearchInput({
   value,
   onSearch,
+  onChange,
   placeholder = "Search...",
   delay = 300,
   className,
@@ -25,13 +26,15 @@ export function SearchInput({
   "aria-label": ariaLabel,
 }: {
   value?: string;
-  onSearch: (q: string) => void;
+  onSearch?: (q: string) => void;
+  onChange?: (q: string) => void;
   placeholder?: string;
   delay?: number;
   className?: string;
   autoFocus?: boolean;
   "aria-label"?: string;
 }) {
+  const handler = onSearch ?? onChange ?? (() => {});
   const [text, setText] = useState(value ?? "");
   const last = useRef(value ?? "");
 
@@ -47,10 +50,10 @@ export function SearchInput({
     if (text === last.current) return;
     const t = setTimeout(() => {
       last.current = text;
-      onSearch(text);
+      handler(text);
     }, delay);
     return () => clearTimeout(t);
-  }, [text, delay, onSearch]);
+  }, [text, delay, handler]);
 
   return (
     <div className={cn("relative", className)}>
@@ -65,7 +68,7 @@ export function SearchInput({
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             last.current = text;
-            onSearch(text);
+            handler(text);
           }
         }}
         className="h-10 rounded-xl pl-9 pr-9 [&::-webkit-search-cancel-button]:hidden"
@@ -78,7 +81,7 @@ export function SearchInput({
           onClick={() => {
             setText("");
             last.current = "";
-            onSearch("");
+            handler("");
           }}
         >
           <X className="size-3.5" />
