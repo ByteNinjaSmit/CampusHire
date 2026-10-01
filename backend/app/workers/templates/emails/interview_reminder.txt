@@ -1,0 +1,10 @@
+Hi {{ full_name or 'there' }},
+
+Your interview takes place within the next 24 hours. Good luck!
+
+{% include "_interview_details.txt" %}
+{% if link %}
+Details: {{ link }}
+
+{% endif %}
+- CampusHire

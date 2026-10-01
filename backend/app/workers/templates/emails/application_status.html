@@ -1,0 +1,10 @@
+{% extends "_base.html" %}
+{% set cta_url = link or ((frontend_url ~ '/student/applications') if frontend_url else '') %}
+{% set cta_label = 'View application' %}
+{% block title %}Application update{% endblock %}
+{% block heading %}Your application status changed{% endblock %}
+{% block content %}
+<p style="margin:0 0 16px;">Your application for <strong>{{ internship_title or 'the internship' }}</strong>{% if company_name %} at <strong>{{ company_name }}</strong>{% endif %} is now:</p>
+<p style="margin:0 0 16px;"><span style="display:inline-block;background:#eef2ff;color:#3730a3;padding:6px 14px;border-radius:999px;font-weight:700;">{{ (status or 'UPDATED')|replace('_', ' ')|title }}</span></p>
+{% if note %}<p style="margin:0 0 16px;padding:12px 16px;background:#f9fafb;border-left:4px solid #4f46e5;"><strong>Note from the reviewer:</strong><br>{{ note }}</p>{% endif %}
+{% endblock %}

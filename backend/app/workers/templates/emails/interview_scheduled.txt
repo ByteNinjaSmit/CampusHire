@@ -1,0 +1,12 @@
+Hi {{ full_name or 'there' }},
+
+An interview has been scheduled for you.
+
+{% include "_interview_details.txt" %}
+A calendar invite (.ics) is attached. You will get a reminder 24 hours before.
+{% if link %}
+
+Details: {{ link }}
+{% endif %}
+
+- CampusHire

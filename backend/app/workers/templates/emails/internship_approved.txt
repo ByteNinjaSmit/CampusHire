@@ -1,0 +1,9 @@
+Hi {{ full_name or 'there' }},
+
+{{ internship_title or 'Your internship' }}{% if company_name %} ({{ company_name }}){% endif %} has been approved and is now visible to students.
+{% if link %}
+
+View it here: {{ link }}
+{% endif %}
+
+- CampusHire

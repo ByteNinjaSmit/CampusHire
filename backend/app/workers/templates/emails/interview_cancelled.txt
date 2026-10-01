@@ -1,0 +1,14 @@
+Hi {{ full_name or 'there' }},
+
+The following interview has been cancelled.
+
+{% include "_interview_details.txt" %}
+{% if reason %}
+Reason: {{ reason }}
+{% endif %}
+{% if link %}
+
+Details: {{ link }}
+{% endif %}
+
+- CampusHire

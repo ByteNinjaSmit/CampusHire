@@ -1,0 +1,9 @@
+{% extends "_base.html" %}
+{% set cta_url = download_url or link or '' %}
+{% set cta_label = 'Download report' %}
+{% block title %}Report ready{% endblock %}
+{% block heading %}Your report is ready{% endblock %}
+{% block content %}
+<p style="margin:0 0 16px;">The report <strong>{{ report_title or 'you requested' }}</strong>{% if format %} ({{ format|upper }}){% endif %} has finished generating.</p>
+<p style="margin:0 0 16px;">Download links are time limited. You can always find the file again under Documents.</p>
+{% endblock %}

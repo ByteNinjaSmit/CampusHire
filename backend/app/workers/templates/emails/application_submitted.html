@@ -1,0 +1,9 @@
+{% extends "_base.html" %}
+{% set cta_url = link or ((frontend_url ~ '/student/applications') if frontend_url else '') %}
+{% set cta_label = 'Track your application' %}
+{% block title %}Application received{% endblock %}
+{% block heading %}Application received{% endblock %}
+{% block content %}
+<p style="margin:0 0 16px;">Your application for <strong>{{ internship_title or 'the internship' }}</strong>{% if company_name %} at <strong>{{ company_name }}</strong>{% endif %} has been submitted successfully.</p>
+<p style="margin:0 0 16px;">You will be notified here and by e-mail whenever its status changes.</p>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "_base.html" %}
+{% set cta_url = link or ((frontend_url ~ '/student/interviews') if frontend_url else '') %}
+{% set cta_label = 'View interview' %}
+{% block title %}Interview reminder{% endblock %}
+{% block heading %}Interview reminder{% endblock %}
+{% block content %}
+<p style="margin:0 0 16px;">Your interview takes place within the next 24 hours. Good luck!</p>
+{% include "_interview_details.html" %}
+{% endblock %}

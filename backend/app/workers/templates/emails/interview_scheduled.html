@@ -1,0 +1,10 @@
+{% extends "_base.html" %}
+{% set cta_url = link or ((frontend_url ~ '/student/interviews') if frontend_url else '') %}
+{% set cta_label = 'View interview' %}
+{% block title %}Interview scheduled{% endblock %}
+{% block heading %}Your interview is scheduled{% endblock %}
+{% block content %}
+<p style="margin:0 0 16px;">An interview has been scheduled for you.</p>
+{% include "_interview_details.html" %}
+<p style="margin:0 0 16px;">A calendar invite (.ics) is attached. You will get a reminder 24 hours before.</p>
+{% endblock %}

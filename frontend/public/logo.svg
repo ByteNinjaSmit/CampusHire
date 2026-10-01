@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="12" fill="url(#g)"/>
+  <path d="M24 10 9 18l15 8 15-8-15-8Z" fill="#fff"/>
+  <path d="M15 23.500v7c0 2.300 4 5.500 9 5.500s9-3.200 9-5.500v-7l-9 4.500-9-4.500Z" fill="#fff" fill-opacity=".85"/>
+  <text x="60" y="32" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#4F46E5">CampusHire</text>
+</svg>

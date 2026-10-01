@@ -1,0 +1,11 @@
+Hi {{ full_name or 'there' }},
+
+The report {{ report_title or 'you requested' }}{% if format %} ({{ format|upper }}){% endif %} has finished generating.
+{% if download_url or link %}
+
+Download: {{ download_url or link }}
+{% endif %}
+
+Download links are time limited. You can always find the file again under Documents.
+
+- CampusHire

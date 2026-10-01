@@ -1,0 +1,10 @@
+{% extends "_base.html" %}
+{% set cta_url = link or ((frontend_url ~ '/student/interviews') if frontend_url else '') %}
+{% set cta_label = 'View interviews' %}
+{% block title %}Interview cancelled{% endblock %}
+{% block heading %}Your interview was cancelled{% endblock %}
+{% block content %}
+<p style="margin:0 0 16px;">The following interview has been cancelled.</p>
+{% include "_interview_details.html" %}
+{% if reason %}<p style="margin:0 0 16px;padding:12px 16px;background:#f9fafb;border-left:4px solid #dc2626;"><strong>Reason:</strong><br>{{ reason }}</p>{% endif %}
+{% endblock %}

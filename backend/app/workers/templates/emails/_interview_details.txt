@@ -1,0 +1,16 @@
+Internship: {{ internship_title or '-' }}{% if company_name %} at {{ company_name }}{% endif %}
+
+When: {{ scheduled_at|dt or '-' }}{% if duration_minutes %} ({{ duration_minutes }} min){% endif %}
+
+{% if mode %}
+Mode: {{ mode|title }}
+{% endif %}
+{% if location %}
+Location: {{ location }}
+{% endif %}
+{% if meeting_link %}
+Meeting link: {{ meeting_link }}
+{% endif %}
+{% if interviewer_name %}
+Interviewer: {{ interviewer_name }}
+{% endif %}

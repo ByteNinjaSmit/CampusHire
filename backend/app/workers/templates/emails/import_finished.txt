@@ -1,0 +1,16 @@
+Hi {{ full_name or 'there' }},
+
+Your data import finished.
+
+Rows imported: {{ rows_ok or 0 }}
+Rows with errors: {{ rows_failed or 0 }}
+{% if rows_failed %}
+
+Rows with errors were skipped. The per-row errors are listed on the job details page.
+{% endif %}
+{% if link %}
+
+{{ link }}
+{% endif %}
+
+- CampusHire

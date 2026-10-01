@@ -1,0 +1,12 @@
+Hi {{ full_name or 'there' }},
+
+Your interview has a new time{% if old_scheduled_at %} (previously {{ old_scheduled_at|dt }}){% endif %}.
+
+{% include "_interview_details.txt" %}
+An updated calendar invite (.ics) is attached.
+{% if link %}
+
+Details: {{ link }}
+{% endif %}
+
+- CampusHire

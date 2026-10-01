@@ -1,0 +1,9 @@
+{% extends "_base.html" %}
+{% set cta_url = verify_url %}
+{% set cta_label = 'Verify email address' %}
+{% block title %}Verify your email{% endblock %}
+{% block heading %}Verify your email address{% endblock %}
+{% block content %}
+<p style="margin:0 0 16px;">Welcome to CampusHire. Please confirm that this is your e-mail address to activate your account.</p>
+<p style="margin:0 0 16px;">This link expires in {{ expires_hours or 24 }} hours. If you did not create an account you can ignore this message.</p>
+{% endblock %}

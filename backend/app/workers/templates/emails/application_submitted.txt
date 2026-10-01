@@ -1,0 +1,10 @@
+Hi {{ full_name or 'there' }},
+
+Your application for {{ internship_title or 'the internship' }}{% if company_name %} at {{ company_name }}{% endif %} has been submitted successfully.
+You will be notified whenever its status changes.
+{% if link %}
+
+Track it here: {{ link }}
+{% endif %}
+
+- CampusHire

@@ -1,0 +1,13 @@
+Hi {{ full_name or 'there' }},
+
+Your application for {{ internship_title or 'the internship' }}{% if company_name %} at {{ company_name }}{% endif %} is now: {{ (status or 'UPDATED')|replace('_', ' ')|title }}.
+{% if note %}
+
+Note from the reviewer: {{ note }}
+{% endif %}
+{% if link %}
+
+View it here: {{ link }}
+{% endif %}
+
+- CampusHire

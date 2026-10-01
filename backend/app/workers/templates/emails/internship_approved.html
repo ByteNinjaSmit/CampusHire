@@ -1,0 +1,8 @@
+{% extends "_base.html" %}
+{% set cta_url = link or ((frontend_url ~ '/internships') if frontend_url else '') %}
+{% set cta_label = 'View internship' %}
+{% block title %}Internship approved{% endblock %}
+{% block heading %}Your internship was approved{% endblock %}
+{% block content %}
+<p style="margin:0 0 16px;"><strong>{{ internship_title or 'Your internship' }}</strong>{% if company_name %} ({{ company_name }}){% endif %} has been approved and is now visible to students.</p>
+{% endblock %}

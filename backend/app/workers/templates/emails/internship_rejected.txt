@@ -1,0 +1,15 @@
+Hi {{ full_name or 'there' }},
+
+{{ internship_title or 'Your internship' }} was not approved by the placement office.
+{% if reason %}
+
+Reason: {{ reason }}
+{% endif %}
+
+You can edit the posting and submit it again.
+{% if link %}
+
+{{ link }}
+{% endif %}
+
+- CampusHire
